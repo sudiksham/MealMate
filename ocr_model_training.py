@@ -20,8 +20,6 @@ Using Food101 Dataset
                                              as_supervised=True,
                                              with_info=True)
 
-def calories():
-
 ds_info.features
 
 class_names = ds_info.features['label'].names
