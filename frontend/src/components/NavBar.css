@@ -1,0 +1,21 @@
+.nav {
+    background-color: #163832;
+    padding: 1% 0; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid saddlebrown;
+}
+
+#logo {
+    text-align: left;
+    display: inline-block;
+}
+
+#cogwheel {
+    float: right;
+    padding: 0;
+    border: none;
+    background: none;
+    outline: none;
+}
