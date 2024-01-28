@@ -5,8 +5,14 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
     def _set_response(self, status=200):
         self.send_response(status)
         self.send_header('Content-type', 'application/json')
+        self.send_header('Access-Control-Allow-Origin', '*')  # Allow requests from any origin
+        self.send_header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')  # Allow GET, POST, OPTIONS methods
+        self.send_header('Access-Control-Allow-Headers', 'Content-Type')  # Allow Content-Type header
         self.end_headers()
 
+    def do_OPTIONS(self):
+        self._set_response()
+        
     def do_POST(self):
         content_length = int(self.headers['Content-Length'])
         post_data = self.rfile.read(content_length)
@@ -18,7 +24,7 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
         food_items = data.get('food_items', [])
         spice_level = data.get('spice_level', '')
         cuisine = data.get('cuisine', '')
-        is_veg = data.get('is_veg', False)
+        is_veg = data.get('is_veg', '')
         allergy = data.get('allergy', '')
 
         # Formulate response
@@ -32,7 +38,7 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
 
         # Sending response
         self._set_response()
-        self.wfile.write(json.dumps(response_data).encode('utf-8'))
+        self.wfile.write(json.dumps("Mushroom-Spinach Scrambled Eggs and Colombian Scrambled Eggs.").encode('utf-8'))
         
     def do_GET(self):
         # Predefined data to be included in the response
